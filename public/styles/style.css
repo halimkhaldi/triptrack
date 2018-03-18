@@ -14,20 +14,23 @@ h1{
   margin-bottom: 1em ;
   background-color: #4ce39c;
   border-color: #4ce39c   ;
+    color:white;
 }
 
-.btn-primary{
+#btn_loign{
   background-color: ##249660;
   border-color: #249660;
+
 }
 
-.btn-secondary{
+#btn_signup{
   background-color: #249660;
   border-color: #249660;
+
 }
 #facebook{
   background-color: #249660;
-  color:white;
+
 }
 #button{
   margin-top: 5em;

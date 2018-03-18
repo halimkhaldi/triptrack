@@ -64,9 +64,11 @@ app.post('/signup',function(req,res){
   res.status(400).json({'message':err1.message});
 }
   else{
-    ssn=req.session;
-    ssn.lat=req.body.lat;
-    ssn.lng=req.body.lng;
+    ssn = req.session;
+    ssn.lat = req.body.lat;
+    ssn.lng = req.body.lng;
+    res.cookie('lat',ssn.lat);
+    res.cookie('lng',ssn.lng);
     res.status(200).json('ok');
 }
   });
@@ -90,17 +92,20 @@ app.post('/login', passport.authenticate('local'),function (req,res) {
 if(!req.user){
   res.status(400);
 }else{
-  ssn=req.session;
-  ssn.lat=req.body.lat;
-  ssn.lng=req.body.lng;
-    res.cookie('lat',ssn.lat);
-    res.cookie('lng',ssn.lng);
+  ssn = req.session;
+  ssn.lat = req.body.lat;
+  ssn.lng = req.body.lng;
+  res.cookie('lat',ssn.lat);
+  res.cookie('lng',ssn.lng);
   res.status(200).json('ok');
 }
 });
+
+
 app.get('/logout', function (req, res) {
   console.log("BEFORE logout", JSON.stringify(req.user));
   req.logout();
+  req.session.destroy();
   console.log("AFTER logout", JSON.stringify(req.user));
   res.redirect('/');
 });

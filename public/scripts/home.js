@@ -3,9 +3,11 @@ var map;
 var map_id;
 function map(){
   // get cookies for lat and lng
+
   var x = document.cookie.split(';');
-    var lat = x[0].split('=');
-    var lng = x[1].split('=');
+  var lat = x[0].split('=');
+  var lng = x[1].split('=');
+
 
     map = new google.maps.Map(map_id, {
         center: { lat: parseFloat(lat[1]), lng: parseFloat(lng[1]) },

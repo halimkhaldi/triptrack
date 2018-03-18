@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
 //basic root route
 app.get('/',function(req,res){
   if(req.user){
-    res.redirect('/profile')
+    res.redirect('/home')
   }else{
 
 res.render('login.ejs');
@@ -77,10 +77,10 @@ app.post('/signup',function(req,res){
 
 });
 
-app.get('/profile',function(req,res){
+app.get('/home',function(req,res){
 
   if(req.user){
-  res.render("profile", {user:req.user,ssn:ssn });
+  res.render("home", {user:req.user,ssn:ssn });
 }else{
   res.redirect('/');
 }

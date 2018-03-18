@@ -16,13 +16,13 @@ function get_current_location() {
 $(document).ready(function(){
   get_current_location();
 $("#btn_signup").on('click',function(){
-  console.log('hey');
+
   var data=$('#signup form').serialize();
   $.ajax({
     url:'/signup',
         method:'post',
       data:data,
-    success:function(){window.location.href='/profile'},
+    success:function(){window.location.href='/home'},
     error:function(json){
       $('.modal').modal('hide');
       console.log(json);
@@ -31,13 +31,13 @@ $("#btn_signup").on('click',function(){
   });
 });
 $("#btn_login").on('click',function(){
-  console.log('hey');
+
   var data=$('#login form').serialize();
   $.ajax({
     url:'/login',
         method:'post',
       data:data,
-    success:function(){window.location.href='/profile'},
+    success:function(){window.location.href='/home'},
     error:function(json){
       $('.modal').modal('hide');
       console.log(json);

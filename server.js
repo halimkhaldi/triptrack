@@ -90,11 +90,11 @@ app.post('/login', passport.authenticate('local'),function (req,res) {
 if(!req.user){
   res.status(400);
 }else{
-  ssn=req.session;
-  ssn.lat=req.body.lat;
-  ssn.lng=req.body.lng;
-    res.cookie('lat',ssn.lat);
-    res.cookie('lng',ssn.lng);
+  ssn = req.session;
+  ssn.lat = req.body.lat;
+  ssn.lng = req.body.lng;
+  res.cookie('lat',ssn.lat);
+  res.cookie('lng',ssn.lng);
   res.status(200).json('ok');
 }
 });

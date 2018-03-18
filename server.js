@@ -4,8 +4,10 @@ var db = require('./models/index.js');
 var bodyParser = require('body-parser'),
     session = require('express-session'),
     passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
-var ssn;
+    LocalStrategy = require('passport-local').Strategy,
+    cookieParser = require('cookie-parser');
+var ssn,
+    cookies;
 var User = db.User;
 // session
 app.use(session({
@@ -13,9 +15,12 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+// cookieParser
+app.use(cookieParser());
+// passport config
 app.use(passport.initialize());
 app.use(passport.session());
-// passport config
+
   passport.use(new LocalStrategy(User.authenticate()));
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
@@ -41,6 +46,7 @@ app.get('/',function(req,res){
   if(req.user){
     res.redirect('/profile')
   }else{
+
 res.render('login.ejs');
 }
 });
@@ -58,7 +64,9 @@ app.post('/signup',function(req,res){
   res.status(400).json({'message':err1.message});
 }
   else{
-
+    ssn=req.session;
+    ssn.lat=req.body.lat;
+    ssn.lng=req.body.lng;
     res.status(200).json('ok');
 }
   });
@@ -72,7 +80,6 @@ app.post('/signup',function(req,res){
 app.get('/profile',function(req,res){
 
   if(req.user){
-  console.log(req.user);
   res.render("profile", {user:req.user,ssn:ssn });
 }else{
   res.redirect('/');
@@ -86,6 +93,8 @@ if(!req.user){
   ssn=req.session;
   ssn.lat=req.body.lat;
   ssn.lng=req.body.lng;
+    res.cookie('lat',ssn.lat);
+    res.cookie('lng',ssn.lng);
   res.status(200).json('ok');
 }
 });

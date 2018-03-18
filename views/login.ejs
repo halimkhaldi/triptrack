@@ -1,0 +1,128 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+
+  <!-- set viewport to device width to make site responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- bootstrap css -->
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+
+    <!-- jquery -->
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+    <!-- bootstrap js -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- custom script -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <title>Express Microblog App</title>
+</head>
+<body>
+
+<div class='container'>
+  <div class='row'>
+    <h1 class='col-1 offset-3'> TripTrack <h1>
+  </div>
+  <div class='row'>
+    <div class='col-10 offset-1'>
+      <img src='http://www.mycity-web.com/wp-content/uploads/2017/04/Amazing-Road-Trip.jpg' class='img-fluid'>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-10 offset-1' id='button'>
+<div class='btn-container'>
+<button class='btn  btn-lg col-12' id='facebook' data-toggle='modal' data-target='#Login'>Login </button>
+</div>
+<div class='btn-container'>
+<button class='btn btn-info btn-lg col-12' id='google' data-toggle='modal' data-target='#Signup'>Signup </button>
+</div>
+<p class='text-center' id='error'></p>
+</div>
+</div>
+</div>
+<div class="modal fade" id="Signup" tabindex="-1" role="dialog" aria-labelledby="Signup" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method='post' action='signup'>
+
+          <div class="form-group">
+            <label for="first_name" class="col-form-label">First name:</label>
+            <input type="text" class="form-control" id="first_name" name='first_name' placeholder="first name">
+          </div>
+          <div class="form-group">
+            <label for="last_name" class="col-form-label">Last name:</label>
+            <input type="text" class="form-control" id="last_name" name='last_name' placeholder="last name">
+          </div>
+          <div class="form-group">
+            <label for="username" class="col-form-label">Email:</label>
+            <input class="form-control" id="username" name='username' placeholder="email"/>
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">Password:</label>
+            <input   type="password" class="form-control" id="password" name='password' placeholder='Password'/>
+          </div>
+          <div class="form-group">
+            <label for="repeat_password" class="col-form-label">Confirm password:</label>
+            <input  type="password" class="form-control" id="repeat_password" name='confirm_password' placeholder='confirm password'/>
+          </div>
+          <input type='hidden' name='lat' >
+            <input type='hidden' name='lng' >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id='btn_signup' >signup</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method='post' action='login'>
+
+
+          <div class="form-group">
+            <label for="username" class="col-form-label">Email:</label>
+            <input class="form-control" id="username" name='username' placeholder="email"/>
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">Password:</label>
+            <input   type="password" class="form-control" id="password" name='password' placeholder='Password'/>
+          </div>
+
+          <input type='hidden' name='lat' >
+            <input type='hidden' name='lng' >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id='btn_login' >login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

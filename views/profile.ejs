@@ -1,0 +1,57 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+
+  <!-- set viewport to device width to make site responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- bootstrap css -->
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+
+    <!-- jquery -->
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+    <!-- bootstrap js -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- custom script -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <title>Profile</title>
+</head>
+<body>
+
+<div class='container'>
+  <div class='row'>
+    <h1 class='col-1 offset-3'> TripTrack <h1>
+  </div>
+  <p><%= user.first_name %></p>
+    <p><%= ssn.lat  %></p>
+      <p><%= ssn.lng  %></p>
+</div>
+<footer class='footer'>
+  <div class='container'>
+    <div class='row'>
+      <div class='nav-link col-3'>
+      <a class='active'><i class="fa fa-home"></i></a>
+      </div>
+      <div class='nav-link col-3 '>
+        <a><i class="fa fa-search"></i></a>
+      </div>
+      <div class='nav-link col-3'>
+      <a>  <i class="fa fa-plus-circle"></i></a>
+      </div>
+    <div class='nav-link col-3'>
+    <a>  <i class="fa fa-user"></i></a>
+    </div>
+  </div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+body{
+  padding: 3em 0em;
+  background-color: #fff;
+  height:100%;
+  overflow: hidden;
+}
+.row{
+  margin-top: 3em;
+}
+h1{
+  color:black;
+}
+footer{
+  position: fixed;
+  bottom:0;
+
+}
+footer .row{
+    border-top:2px solid black;
+}
+.nav-link{
+  font-size:3em;
+  padding:0.5em;
+}
+.active{
+  color:white;
+}

@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // req.body
 // change engine
 app.set("view engine", "ejs");
 // methode overider
-app.use(methodOverride("_method"));
+// app.use(methodOverride("_method"));
 // Set CORS Headers
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');

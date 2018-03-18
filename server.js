@@ -103,6 +103,7 @@ if(!req.user){
 app.get('/logout', function (req, res) {
   console.log("BEFORE logout", JSON.stringify(req.user));
   req.logout();
+  req.session.destroy();
   console.log("AFTER logout", JSON.stringify(req.user));
   res.redirect('/');
 });

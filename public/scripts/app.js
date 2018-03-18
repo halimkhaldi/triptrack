@@ -41,7 +41,7 @@ $("#btn_login").on('click',function(){
     error:function(json){
       $('.modal').modal('hide');
       console.log(json);
-      $('#error').text('wrong combination of username and password');
+      $('#error').text('wrong combination of email and password');
     }
   });
 });

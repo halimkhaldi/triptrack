@@ -1,0 +1,42 @@
+body{
+  padding: 0em 0em;
+  background-color: #fff;
+  height:100%;
+  overflow: hidden;
+}
+
+h1{
+  color:black;
+}
+#map{
+  height:80%;
+}
+footer{
+  position: fixed;
+  bottom:0;
+  width:100%;
+}
+footer a{
+  text-decoration: none;
+  color:black;
+}
+footer .row{
+    border-top:1.4px solid black;
+    background-color: grey;
+}
+.nav-link{
+  font-size:3em;
+  padding:0.5em;
+
+}
+.active{
+  background-color: white;
+
+}
+.active a{
+  text-decoration: none;
+  color:red;
+}
+.modal {
+  margin-top: 5em;
+}

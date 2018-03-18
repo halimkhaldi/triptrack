@@ -13,7 +13,7 @@
 <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- custom styles -->
-    <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+    <link rel="stylesheet" type="text/css" href="/styles/trip.css">
 <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDAfwCoggPDi6ucFfluBOo9kpJHoFbaVtM
 &ibraries=geometry,places'> </script>
     <!-- jquery -->
@@ -22,21 +22,58 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <!-- custom script -->
-  <script type="text/javascript" src="/scripts/profile.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/profile.js"></script> -->
 
   <title>Profile</title>
 </head>
 <body>
 
 <div class='container'>
+<div id='map'>
+</div>
+<button class='btn btn-primary' data-target='#Start_Trip' data-toggle="modal">Start Trip</button>
+<div class="modal fade" id="Start_Trip" tabindex="-1" role="dialog" aria-labelledby="Start_Trip" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Start Trip</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method='post' action='/trip'>
 
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="name" name='name' placeholder="name">
+          </div>
+          <div class="form-group">
+            <label for="description" class="col-form-label">Description</label>
+            <input type="text" class="form-control" id="description" name='description' placeholder="Description">
+          </div>
+          <div class="form-group">
+            <label for="image" class="col-form-label">Images</label>
+            <input type="file" class="form-control" id="image" name='image' placeholder="Add Images" multiple>
+          </div>
+          <input type='hidden' name='lat' >
+            <input type='hidden' name='lng' >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" id='btn_start_trip' >Start Trip</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 <footer class='footer'>
   <div class='container'>
     <div class='row'>
       <div class='nav-link col-3 '>
-      <a href='/user/home'><i class="fa fa-home"></i></a>
+      <a href='/home'><i class="fa fa-home"></i></a>
       </div>
       <div class='nav-link col-3 '>
         <a href='#'><i class="fa fa-search"></i></a>

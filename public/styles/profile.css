@@ -34,5 +34,6 @@ footer .row{
 
 }
 .active a{
+  text-decoration: none;
   color:red;
 }

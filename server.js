@@ -67,6 +67,8 @@ app.post('/signup',function(req,res){
     ssn=req.session;
     ssn.lat=req.body.lat;
     ssn.lng=req.body.lng;
+    res.cookie('lat',ssn.lat);
+    res.cookie('lng',ssn.lng);
     res.status(200).json('ok');
 }
   });

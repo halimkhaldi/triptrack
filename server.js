@@ -113,6 +113,18 @@ app.post('/trip',function(req,res){
   console.log(req);
 });
 
+app.get('/search', function (req, res) {
+  if(!req.user) {
+    res.redirect('/');
+  } else {
+    res.render('search');
+  }
+});
+app.post('/search',function(req,res){
+  console.log('here');
+  console.log(req);
+});
+
 
 app.get('/logout', function (req, res) {
   console.log("BEFORE logout", JSON.stringify(req.user));

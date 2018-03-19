@@ -1,0 +1,57 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+
+  <!-- set viewport to device width to make site responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- bootstrap css -->
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDAfwCoggPDi6ucFfluBOo9kpJHoFbaVtM
+&ibraries=geometry,places'> </script>
+    <!-- jquery -->
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+    <!-- bootstrap js -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- custom script -->
+  <script type="text/javascript" src="/scripts/profile.js"></script>
+
+  <title>Home</title>
+</head>
+<body>
+  <h1> <%=user.first_name%>'s Profile </h1>
+
+<div class='container'>
+
+  <div class='row'>
+  <div class='col-12' id='profile'></div>
+  </div>
+</div>
+<footer class='footer'>
+  <div class='container'>
+    <div class='row'>
+      <div class='nav-link col-3'>
+      <a href='/home'><i class="fa fa-home"></i></a>
+      </div>
+      <div class='nav-link col-3 '>
+        <a href='#'><i class="fa fa-search"></i></a>
+      </div>
+      <div class='nav-link col-3'>
+      <a href='/trip'>  <i class="fa fa-plus-circle"></i></a>
+      </div>
+    <div class='nav-link col-3 active'>
+    <a href='/user'>  <i class="fa fa-user"></i></a>
+    </div>
+  </div>
+</div>
+</footer>
+</body>
+</html>

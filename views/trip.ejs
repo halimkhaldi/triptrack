@@ -27,7 +27,6 @@
   <title>Profile</title>
 </head>
 <body>
-
 <div class='container'>
 <div id='map'>
 </div>
@@ -42,7 +41,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method='post' action='/trip'>
+        <form method='post' action='/trip' enctype="multipart/form-data">  <!-- allow multipart data -->
 
           <div class="form-group">
             <label for="name" class="col-form-label">Name:</label>
@@ -54,7 +53,7 @@
           </div>
           <div class="form-group">
             <label for="image" class="col-form-label">Images</label>
-            <input type="file" class="form-control" id="image" name='image' placeholder="Add Images" multiple>
+            <input type="file" class="form-control" id="image" name='myImage' placeholder="Add Images" >
           </div>
           <input type='hidden' name='lat' >
             <input type='hidden' name='lng' >

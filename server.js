@@ -5,7 +5,13 @@ var bodyParser = require('body-parser'),
     session = require('express-session'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    path = require('path'),//to extract extension
+    multer = require('multer'); //multi-datatype parser
+
+
+
+
 var ssn,
     cookies;
 var User = db.User;
@@ -39,8 +45,19 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
-});
-
+  });
+  //storage, where we will keep out data
+  const storage = multer.diskStorage({
+    destination: 'uploads/',
+    filename: function(req, file, cb){
+      cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
+  const upload = multer({
+    storage: storage,
+    limits:{fileSize: 5*1024*1024},
+  });//limits file size to uploads
+  var uploads=upload.single('myImage');//this allows only one file 'myImage'
 //basic root route
 app.get('/',function(req,res){
   if(req.user){
@@ -108,10 +125,22 @@ app.get('/trip', function (req, res) {
     res.render('trip');
   }
 });
-app.post('/trip',function(req,res){
-  console.log('here');
-  console.log(req);
+app.post('/trip',function(req,res,err){
+  uploads(req,res,function(err){
+
+if (err) {
+    console.log('this is an error'+ err);
+
+}else {
+  console.log(req.file.filename);
+  console.log('whats up');
+}
+
+  });
+
+
 });
+
 
 
 app.get('/logout', function (req, res) {

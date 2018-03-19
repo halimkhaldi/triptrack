@@ -4,3 +4,5 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/trip', {promis
 
 /* adding model User to index.js */
 module.exports.User = require('./User');
+/* adding model Trip to index.js */
+module.exports.Trip = require('./Trip');

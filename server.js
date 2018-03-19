@@ -101,6 +101,28 @@ if(!req.user){
 }
 });
 
+app.get('/users', function(req, res) {
+  db.User.find({}, function(err, users) {
+    if (err) {
+      console.log(err);
+      res.status(400).json({users: 'no data'});
+    } else {
+      console.log(users);
+      res.status(200).json({users: users});
+    }
+  })
+});
+
+app.get('/users/:id', function(req, res) {
+  db.User.findOne({_id: req.params.id}, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).json(user);
+    }
+  })
+});
+
 app.get('/trip', function (req, res) {
   if(!req.user) {
     res.redirect('/');

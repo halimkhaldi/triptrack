@@ -54,14 +54,14 @@ function map(center){
         // The anchor for this image is the base of the flagpole at (0, 32).
         anchor: new google.maps.Point(0, 0)
       };
-
+      console.log(place);
       markers[i] = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
         icon: image,
         title: place.name,
         id: place.id,
-        content: `<div>${place.name} to know more click here ${place.photos[0].html_attributions[0]}</div>`
+        content: `<div>${place.name} <br> ${place.photos[0].html_attributions[0]}</div>`
 
 
 

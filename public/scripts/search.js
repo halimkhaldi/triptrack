@@ -1,6 +1,7 @@
 var map;
 var map_id;
-
+var open=false;
+var infowindow;
 function initAutocomplete() {
   var x = document.cookie.split(';');
   console.log(x);
@@ -43,6 +44,7 @@ function initAutocomplete() {
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
+      console.log(place);
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
@@ -60,8 +62,24 @@ function initAutocomplete() {
         map: map,
         icon: icon,
         title: place.name,
-        position: place.geometry.location
+        position: place.geometry.location,
+        info:`${place.formatted_address}  <br>${place.photos[0].html_attributions[0]}`
       }));
+      markers.forEach(function(mk){
+
+        google.maps.event.addListener(mk, 'click', function(){
+            console.log('clciked');
+          if(open){
+            infowindow.close();
+            open=false;
+          }
+          infowindow = new google.maps.InfoWindow({
+     content: mk.info
+   });
+   infowindow.open(map,mk);
+   open=true;
+ });
+});
 
       if (place.geometry.viewport) {
         // Only geocodes have viewport.

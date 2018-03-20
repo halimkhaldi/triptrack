@@ -45,3 +45,8 @@ footer .row{
   margin-top: 0.4em ;
 
 }
+@media only screen and (max-height: 740px) {
+  #map{
+    height:70%;
+  }
+}

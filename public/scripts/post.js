@@ -146,6 +146,7 @@ alert(err.responseJSON.message);      }
         window.location.href='/home'
       },
       error:function(err){
+        console.log(err);
         alert(err.responseJSON.message);
       }
     });
@@ -166,7 +167,8 @@ $('#end_trip').on('submit',function(e){
       window.location.href='/home'
     },
     error:function(err){
-      alert(err.responseJSON.message);
+      console.log(err)
+      alert(err.responseJSON.message.message);
     }
   });
 

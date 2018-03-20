@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 TripSchema = new Schema({
 user_id:{ type: Schema.Types.ObjectId, ref: 'User' },
-name:String,
+name:{type:String,required: true },
 description:String,
 date_start:String,
 date_end:String,

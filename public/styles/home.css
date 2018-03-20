@@ -5,7 +5,9 @@ body{
   overflow: scroll;
 }
 
-h1{
+h3{
+  padding:1em; 
+  margin: 2em 0 2em 0;
   text-align: center;
   color:black;
 }
@@ -15,6 +17,7 @@ h1{
 .btn{
   margin-top: 0.4em ;
   background-color: #4ce39c;
+  /* vertical-align: middle; */
 }
 footer{
   position: fixed;
@@ -42,30 +45,16 @@ footer .row{
   text-decoration: none;
   color:red;
 }
-#profile {
-  background-color: #6fffbb;
-}
-.profilePicHold {
-  width: 7em;
-  height: 7em;
-  opacity: .5;
-}
-img {
-    display: block;
-    margin-top: 2em;
-    margin-left: auto;
-    margin-right: auto;
-}
+
+
 .btn {
   background-color: #4ce39c;
 }
-.tripHead {
-  margin-top: .7em;
-}
-.logoutButton {
-  margin-left: 1em;
 
-}
-.settingsButton {
-  margin-right: 2em;
+.startTripBtn {
+  /* margin-left: 1em; */
+  display: block;
+  margin: 0 auto;
+  padding: 0.5em;
+
 }

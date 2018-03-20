@@ -68,7 +68,7 @@ function initAutocomplete() {
       markers.forEach(function(mk){
 
         google.maps.event.addListener(mk, 'click', function(){
-            console.log('clciked');
+            console.log('clicked');
           if(open){
             infowindow.close();
             open=false;

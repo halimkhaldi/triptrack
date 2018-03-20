@@ -27,7 +27,7 @@
   <title>Home</title>
 </head>
 <body>
-  
+
 
 <div class='container'>
 
@@ -35,21 +35,54 @@
   <div class='col-12' id='profile'>
     <h1> <%=user.first_name%>'s Profile </h1>
     <img src='https://lucenthealth.com/wp-content/uploads/PROFILE-PHOTO-PLACEHOLDER.png' class='profilePicHold' alt='Profile Pic'>
-    
+
   </div>
   </div>
-    
+
 </div>
 <h2 class='text-center tripHead'>TRIPS</h2>
-<div class='container proTrips'>
+<div class="card">
 
 
+    <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+        <a href="#">
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
 
 
+    <div class="card-body">
+
+        <h4 class="card-title">Trip Name</h4>
+
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">MORE</a>
+    </div>
 
 </div>
 
-  
+<div class="card">
+
+
+    <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+        <a href="#">
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+
+
+    <div class="card-body">
+
+        <h4 class="card-title">Trip Name</h4>
+
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">MORE</a>
+    </div>
+
+</div>
+
 <!-- <div class='lowButton'>
 <div class='text-left prof'>
 <a class='btn btn-info btn-sm col-5 logoutButton' href='#'><button>SETTINGS</button></a>
@@ -59,19 +92,23 @@
   <a class='btn btn-info btn-sm col-5 logoutButton'href="/logout"><button>LOGOUT</button></a>
 </div>
 </div> -->
-
+<!-- <button>LOGOUT</button>
+<button>SETTINGS</button> -->
 <footer class='footer'>
+
   <div class='align-bottom'>
-    <a class='btn btn-info btn-sm col-5 logoutButton'href="/logout"><button>LOGOUT</button></a>
-    <a class='btn btn-info btn-sm col-5 settingsButton' style='float: right' href='#'><button>SETTINGS</button></a>
-    <div>
+    <a class='btn btn-info btn-sm col-5 logoutButton'href="/logout">LOGOUT</a>
+    <a class='btn btn-info btn-sm col-5 settingsButton' style='float: right' href='#'>SETTINGS</a>
+  </div>
+
+
   <div class='container'>
     <div class='row'>
       <div class='nav-link col-3'>
       <a href='/home'><i class="fa fa-home"></i></a>
       </div>
       <div class='nav-link col-3 '>
-        <a href='#'><i class="fa fa-search"></i></a>
+        <a href='/search'><i class="fa fa-search"></i></a>
       </div>
       <div class='nav-link col-3'>
       <a href='/trip'>  <i class="fa fa-plus-circle"></i></a>

@@ -14,23 +14,29 @@
 
     <!-- custom styles -->
     <link rel="stylesheet" type="text/css" href="/styles/trip.css">
-<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDAfwCoggPDi6ucFfluBOo9kpJHoFbaVtM
-&ibraries=geometry,places'> </script>
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBVLS8tZmEUWNSzbNrQbjx3TcM2PnTSXus
+&libraries=geometry,places'> </script>
     <!-- jquery -->
 <script type="text/javascript" src="/scripts/jquery.js"></script>
     <!-- bootstrap js -->
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <!-- custom script -->
+    <% if(!ssn.trip) { %>
   <script type="text/javascript" src="/scripts/trip.js"></script>
-
-  <title>Profile</title>
+<% } else { %>
+  <script type="text/javascript" src="/scripts/post.js"></script>
+<% } %>
+  <title>Trip</title>
 </head>
 <body>
-<div class='container'>
-<div id='map'>
+  <% if(!ssn.trip) { %>
+  <div id='map'>
 </div>
-<button class='btn btn-primary' data-target='#Start_Trip' data-toggle="modal">Start Trip</button>
+<div class='container'>
+  <div class='col-10 offset-1'>
+<button class='btn btn-primary col-12' data-target='#Start_Trip' data-toggle="modal">Start Trip</button>
+</div>
 <div class="modal fade" id="Start_Trip" tabindex="-1" role="dialog" aria-labelledby="Start_Trip" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -68,6 +74,96 @@
 </div>
 
 </div>
+<% } else{ %>
+
+  <div id='map'>
+</div>
+<div class='container'>
+<div class='row'>
+  <div class='col-10 offset-1'>
+<button class='btn btn-success col-12' data-target='#add_trip' data-toggle="modal">add Posts</button>
+<button class='btn btn-danger col-12' data-target='#end_trip' data-toggle="modal">End your Trip</button>
+</div>
+</div>
+<div class="modal fade" id="add_trip" tabindex="-1" role="dialog" aria-labelledby="add_post" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Start Trip</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method='post' enctype="multipart/form-data" id='add_post'>  <!-- allow multipart data -->
+
+          <div class="form-group">
+            <label for="name" class="col-form-label">title:</label>
+            <input type="text" class="form-control" id="name" name='name' placeholder="name">
+          </div>
+          <div class="form-group">
+            <label for="description" class="col-form-label">Description</label>
+            <input type="text" class="form-control" id="description" name='description' placeholder="Description">
+          </div>
+          <div class="form-group">
+            <label for="image" class="col-form-label">Images</label>
+            <input type="file" class="form-control" id="image" name='myImage' placeholder="Add Images"  multiple>
+          </div>
+          <input type='hidden' name='lat' >
+            <input type='hidden' name='lng' >
+            <input type='hidden' name='place_id' >
+              <input type='hidden' name='street' >
+                <input type='hidden' name='city' >
+                  <input type='hidden' name='state' >
+                  <input type='hidden' name='zip_code' >
+                    <input type='hidden' name='place_name' >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" id='btn_add_post' >add Post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="end_trip" tabindex="-1" role="dialog" aria-labelledby="end_Trip" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Start Trip</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method='post' action='/post' enctype="multipart/form-data" id='end_trip'>  <!-- allow multipart data -->
+
+          <div class="form-group">
+            <label for="name_end" class="col-form-label">title:</label>
+            <input type="text" class="form-control" id="name_end" name='name' placeholder="name">
+          </div>
+          <div class="form-group">
+            <label for="description_end" class="col-form-label">Description</label>
+            <input type="text" class="form-control" id="description_end" name='description' placeholder="Description">
+          </div>
+          <div class="form-group">
+            <label for="image_end" class="col-form-label">Images</label>
+            <input type="file" class="form-control" id="image_end" name='myImage' placeholder="Add Images"  multiple>
+          </div>
+          <input type='hidden' name='lat' >
+            <input type='hidden' name='lng' >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" id='btn_end_trip' >End Trip</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <% } %>
 <footer class='footer'>
   <div class='container'>
     <div class='row'>

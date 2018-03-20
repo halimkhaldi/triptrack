@@ -21,6 +21,8 @@ var ssn,
     cookies;
 var User = db.User;
 var Trip = db.Trip;
+var Activity=db.Activity;
+var Post=db.Post
 // session
 app.use(session({
   secret: 'wdi_trip_log',
@@ -119,9 +121,9 @@ if(!req.user){
 }else{
 
   ssn = req.session;
-  Trip.findOne({user_id:req.user._id},function(err,found){
+  Trip.findOne({user_id:req.user._id,date_end:null},function(err,found){
     if(found){
-  ssn.trip=found._id;
+  ssn.trip=found;
 }
   });
 
@@ -137,13 +139,12 @@ app.get('/trip', function (req, res) {
   if(!req.user) {
     res.redirect('/');
   } else {
-    res.render('trip');
+    res.render('trip',{ssn:ssn});
   }
 });
 app.post('/trip',function(req,res){
-
+  if(req.user && !ssn.trip ){
   uploads(req,res,function(err){
-
 if (err) {
     console.log('this is an error'+ err);
     res.status(400).json({message:err});
@@ -186,10 +187,130 @@ images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
 
 });
 
+}else{
+  res.redirect('/');
+}
+});
+app.post('/trip/post',function(req,res){
+  if(req.user && ssn.trip ){
 
+  uploads(req,res,function(err){
+
+  if (err) {
+    console.log('this is an error'+ err);
+    res.status(400).json({message:err});
+
+  }else {
+    console.log('bbbbb');
+    Activity.findOne({place_id:req.body.place_id},function(err,found){
+
+      if(!found){
+
+        Activity.create({
+          place_id:req.body.place_id,
+          lat:req.body.lat,
+          lng:req.body.lng,
+          street:req.body.street,
+          city:req.body.city,
+          state:req.body.state,
+          zip_code:req.body.zip_code,
+          name:req.body.place_name
+
+        },function(err1,created){
+          if(created){
+            var images=[];
+            let files = req.files;
+            files.forEach(function(val){
+          myBucket.upload(val.path, { public: true });
+          images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
+          });
+          Post.create({
+            user_id:req.user,
+            location_id:created,
+            title:req.body.name,
+            description:req.body.description,
+            images:images,
+            trip_id:ssn.trip
+          },function(err2,posted){
+            if(posted){
+              res.status(200).json('ok')
+            }
+            else{
+              res.status(400).json(err2);
+
+            }
+          });
+
+          }
+        });
+      }else{
+        var images=[];
+        let files = req.files;
+        files.forEach(function(val){
+      myBucket.upload(val.path, { public: true });
+      images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
+      });
+      Post.create({
+        user_id:req.user,
+        location_id:found,
+        title:req.body.name,
+        description:req.body.description,
+        images:images,
+        trip_id:ssn.trip
+      },function(err2,posted){
+        if(posted){
+          res.status(200).json('ok')
+        }
+        else{
+          res.status(400).json(err2);
+
+        }
+      });
+
+
+
+      }
+    });
+
+  }
+});
+}
 });
 
+app.put('/trip',function(req,res){
+  if(req.user && ssn.trip ){
+  uploads(req,res,function(err){
+  if (err) {
+    console.log('this is an error'+ err);
+    res.status(400).json({message:err});
 
+  }else {
+    var images=[];
+    let files = req.files;
+    files.forEach(function(val){
+  myBucket.upload(val.path, { public: true });
+  images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
+  });
+  ssn.trip.name_end=req.body.name;
+  ssn.trip.description_end=req.body.description;
+  ssn.trip.lat_end=req.body.lat;
+  ssn.trip.lng_end=req.body.lng;
+  ssn.trip.img_end=images;
+  ssn.trip.date_end=Date();
+  ssn.trip.save(function(err,saved){
+    if(saved){
+      ssn.trip=null;
+    res.status(200).json('okay');
+    }
+    else{
+      res.status(400);
+    }
+  });
+  }
+});
+}
+
+});
 
 app.get('/logout', function (req, res) {
   console.log("BEFORE logout", JSON.stringify(req.user));

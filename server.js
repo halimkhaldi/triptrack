@@ -311,7 +311,6 @@ app.put('/trip',function(req,res){
   images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
   });
   Trip.findOne({_id:ssn.trip},function(err,trip){
-  trip.name_end=req.body.name;
   trip.description_end=req.body.description;
   trip.lat_end=req.body.lat;
   trip.lng_end=req.body.lng;

@@ -13,7 +13,6 @@ lat_end:Number,
 lng_end:Number,
 image_start:[String],
 image_end:[String],
-name_end:String,
 description_end:String
 
 });

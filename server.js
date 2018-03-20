@@ -71,7 +71,7 @@ app.use(function(req, res, next) {
         if(mimetype && extname){
           return cb(null,true);
         } else {
-          cb('Error: Images Only!');
+          cb('Nope we only accept images ');
         }
   }
 });//limits file size to uploads

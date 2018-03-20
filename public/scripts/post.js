@@ -128,8 +128,7 @@ $(document).ready(function(){
         window.location.href='/home'
       },
       error:function(err){
-      console.log(err);
-      }
+alert(err.responseJSON.message);      }
     })
   });
   $('#add_post').on('submit',function(e){
@@ -147,8 +146,7 @@ $(document).ready(function(){
         window.location.href='/home'
       },
       error:function(err){
-        console.log('no')
-      console.log(err);
+        alert(err.responseJSON.message);
       }
     });
 
@@ -168,8 +166,7 @@ $('#end_trip').on('submit',function(e){
       window.location.href='/home'
     },
     error:function(err){
-      console.log('no')
-    console.log(err);
+      alert(err.responseJSON.message);
     }
   });
 

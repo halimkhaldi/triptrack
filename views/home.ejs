@@ -10,16 +10,16 @@
 
   <!-- bootstrap css -->
   <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- custom styles -->
-    <link rel="stylesheet" type="text/css" href="/styles/profile.css">
-<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDAfwCoggPDi6ucFfluBOo9kpJHoFbaVtM
-&ibraries=geometry,places'> </script>
-    <!-- jquery -->
-<script type="text/javascript" src="/scripts/jquery.js"></script>
-    <!-- bootstrap js -->
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- custom styles -->
+  <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+  <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDAfwCoggPDi6ucFfluBOo9kpJHoFbaVtM
+  &ibraries=geometry,places'> </script>
+  <!-- jquery -->
+  <script type="text/javascript" src="/scripts/jquery.js"></script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <!-- custom script -->
   <script type="text/javascript" src="/scripts/home.js"></script>
@@ -27,37 +27,37 @@
   <title>Home</title>
 </head>
 <body>
-<% if(!ssn.trip){ %>
-<div class='container'>
-
-  <div class='row'>
-
-</div>
-<% } else{ %>
-  <div class='container'>
-
-    <div class='row'>
-    <h1> Trip started </h1>
+  <% if(!ssn.trip){ %>
+    <div class='container'>
+      <div class='row'>
+        <h1>You have not started any trips. Click <a href='/trip'>here</a> trip.</h1>
+      </div>
     </div>
-  </div>
-  <% } %>
-<footer class='footer'>
-  <div class='container'>
-    <div class='row'>
-      <div class='nav-link col-3 active'>
-      <a href='/home'><i class="fa fa-home"></i></a>
+    <% } else{ %>
+      <div class='container'>
+
+        <div class='row'>
+          <h1> Trip started </h1>
+        </div>
       </div>
-      <div class='nav-link col-3 '>
-        <a href='/search'><i class="fa fa-search"></i></a>
-      </div>
-      <div class='nav-link col-3'>
-      <a href='/trip'>  <i class="fa fa-plus-circle"></i></a>
-      </div>
-    <div class='nav-link col-3'>
-    <a href='/user'>  <i class="fa fa-user"></i></a>
-    </div>
-  </div>
-</div>
-</footer>
-</body>
-</html>
+      <% } %>
+      <footer class='footer'>
+        <div class='container'>
+          <div class='row'>
+            <div class='nav-link col-3 active'>
+              <a href='/home'><i class="fa fa-home"></i></a>
+            </div>
+            <div class='nav-link col-3 '>
+              <a href='/search'><i class="fa fa-search"></i></a>
+            </div>
+            <div class='nav-link col-3'>
+              <a href='/trip'>  <i class="fa fa-plus-circle"></i></a>
+            </div>
+            <div class='nav-link col-3'>
+              <a href='/user'>  <i class="fa fa-user"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </body>
+    </html>

@@ -54,10 +54,8 @@ img {
 }
 .btn {
   background-color: #4ce39c;
+  margin: auto;
 }
 .tripHead {
   margin-top: .7em;
-}
-.lowButtons {
-  display: inline;
 }

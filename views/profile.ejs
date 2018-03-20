@@ -27,15 +27,41 @@
   <title>Home</title>
 </head>
 <body>
-  <h1> <%=user.first_name%>'s Profile </h1>
+  
 
 <div class='container'>
 
   <div class='row'>
-  <div class='col-12' id='profile'></div>
+  <div class='col-12' id='profile'>
+    <h1> <%=user.first_name%>'s Profile </h1>
+    <img src='https://lucenthealth.com/wp-content/uploads/PROFILE-PHOTO-PLACEHOLDER.png' class='profilePicHold' alt='Profile Pic'>
+    
   </div>
+  </div>
+    
 </div>
+<h2 class='text-center tripHead'>TRIPS</h2>
+<div class='container proTrips'>
+
+
+
+
+
+</div>
+
+
+<div class='lowButtons'>
+<div class='text-left prof'>
+<button type='button' class='btn btn-info btn-sm col-5 logoutButton' href='logout'>SETTINGS</button>
+</div>
+
+<div class='text-right prof'>
+  <a class='btn btn-info btn-sm col-5 logoutButton'href="/logout"><button>LOGOUT</button></a>
+</div>
+</div>
+
 <footer class='footer'>
+
   <div class='container'>
     <div class='row'>
       <div class='nav-link col-3'>

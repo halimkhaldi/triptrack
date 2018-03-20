@@ -14,7 +14,7 @@
 
     <!-- custom styles -->
     <link rel="stylesheet" type="text/css" href="/styles/search.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVLS8tZmEUWNSzbNrQbjx3TcM2PnTSXus&libraries=places&callback=initAutocomplete"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVLS8tZmEUWNSzbNrQbjx3TcM2PnTSXus&libraries=places"
              async defer></script>
     <!-- jquery -->
 <script type="text/javascript" src="/scripts/jquery.js"></script>
@@ -27,14 +27,14 @@
   <title>Home</title>
 </head>
 <body>
-
+  <div class='col-12' id='map'></div>
 <div class='container'>
 
-  <div class='row'>
-  <div class='col-12' id='map'></div>
+  <div class='row' id='search'>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
   </div>
 </div>
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <footer class='footer'>
   <div class='container'>
     <div class='row'>

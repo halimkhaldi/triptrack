@@ -280,6 +280,7 @@ app.post('/trip/post',function(req,res){
 app.put('/trip',function(req,res){
   if(req.user && ssn.trip ){
   uploads(req,res,function(err){
+    console.log(req.body);
   if (err) {
     console.log('this is an error'+ err);
     res.status(400).json({message:err});
@@ -291,13 +292,14 @@ app.put('/trip',function(req,res){
   myBucket.upload(val.path, { public: true });
   images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
   });
-  ssn.trip.name_end=req.body.name;
-  ssn.trip.description_end=req.body.description;
-  ssn.trip.lat_end=req.body.lat;
-  ssn.trip.lng_end=req.body.lng;
-  ssn.trip.img_end=images;
-  ssn.trip.date_end=Date();
-  ssn.trip.save(function(err,saved){
+  Trip.findOne({_id:ssn.trip},function(err,trip){
+  trip.name_end=req.body.name;
+  trip.description_end=req.body.description;
+  trip.lat_end=req.body.lat;
+  trip.lng_end=req.body.lng;
+  trip.image_end=images;
+  trip.date_end=Date();
+  trip.save(function(err,saved){
     if(saved){
       ssn.trip=null;
     res.status(200).json('okay');
@@ -306,6 +308,7 @@ app.put('/trip',function(req,res){
       res.status(400);
     }
   });
+});
   }
 });
 }

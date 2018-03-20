@@ -89,7 +89,10 @@ res.render('login.ejs');
 }
 });
 app.post('/signup',function(req,res){
-
+  var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  if( !emailRegex.test(req.body.username)){;
+    res.status(400).json({message:'email adresse is not valide'});
+}
   User.register(new User({username:req.body.username,first_name:req.body.first_name,last_name:req.body.last_name})
   ,req.body.password,function(err,newUser){
     if(err){

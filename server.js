@@ -136,10 +136,14 @@ if(!req.user){
 });
 
 app.get('/user', function(req, res) {
+  var trips=[];
   if(!req.user) {
     res.redirect('/');
   } else {
-    res.render('profile',{user:req.user})
+    Trip.find({user_id:req.user._id},function(err,all){
+    res.render('profile',{user:req.user,trips:all});
+    });
+  
   }
 });
 

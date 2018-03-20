@@ -41,46 +41,30 @@
 
 </div>
 <h2 class='text-center tripHead'>TRIPS</h2>
+<div class='content'>
+<% trips.forEach(function(trip) { %>
+
 <div class="card">
 
 
     <div class="view overlay">
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+        <img src= ' <%= trip.image_start[0] %> ' class="img-fluid" alt="">
         <a href="#">
             <div class="mask rgba-white-slight"></div>
         </a>
     </div>
 
-
+  
     <div class="card-body">
 
-        <h4 class="card-title">Trip Name</h4>
+        <h4 class="card-title"><%= trip.name %></h4>
 
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text"><%= trip.description %></p>
         <a href="#" class="btn btn-primary">MORE</a>
     </div>
-
+    
+    <% }); %>
 </div>
-
-<div class="card">
-
-
-    <div class="view overlay">
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-        <a href="#">
-            <div class="mask rgba-white-slight"></div>
-        </a>
-    </div>
-
-
-    <div class="card-body">
-
-        <h4 class="card-title">Trip Name</h4>
-
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">MORE</a>
-    </div>
-
 </div>
 
 <!-- <div class='lowButton'>

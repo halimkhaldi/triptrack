@@ -143,7 +143,7 @@ app.get('/user', function(req, res) {
     Trip.find({user_id:req.user._id},function(err,all){
     res.render('profile',{user:req.user,trips:all});
     });
-  
+
   }
 });
 
@@ -182,6 +182,8 @@ images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
   Trip.create({
     user_id:req.user,
     date_start:Date(),
+    name:req.body.name,
+    description:req.body.description,
     lat_start:req.body.lat,
     lng_start:req.body.lng,
     image_start:images

@@ -46,9 +46,9 @@ $(document).ready(function(){
         window.location.href='/home'
       },
       error:function(err){
-      console.log(err);
+      alert(err.responseJSON.message);
       }
-    })
-  })
+    });
+  });
 
 });

@@ -64,7 +64,20 @@ app.use(function(req, res, next) {
   const upload = multer({
     storage: local,
     limits:{fileSize: 15*1024*1024},
-  });//limits file size to uploads
+    fileFilter: function(req, file, cb){
+      const filetypes = /jpeg|jpg|png|gif/;
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = filetypes.test(file.mimetype);
+        if(mimetype && extname){
+          return cb(null,true);
+        } else {
+          cb('Error: Images Only!');
+        }
+  }
+});//limits file size to uploads
+
+
+
   var uploads=upload.array('myImage',5);//this allows only one file 'myImage'
 //basic root route
 app.get('/',function(req,res){
@@ -108,7 +121,7 @@ app.get('/home',function(req,res){
 
   if(req.user){
   res.render("home", {user:req.user,ssn:ssn });
-  console.log(ssn);
+
 }else{
   res.redirect('/');
 
@@ -190,7 +203,7 @@ images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
 
   },function(err1,created){
     if(err1){
-      console.log(err1)
+    res.status(400).json({message:err1});
     }else{
       ssn.trip=created._id;
       ssn.lat = created.lat_start;
@@ -225,7 +238,7 @@ app.post('/trip/post',function(req,res){
     res.status(400).json({message:err});
 
   }else {
-    console.log('bbbbb');
+
     Activity.findOne({place_id:req.body.place_id},function(err,found){
 
       if(!found){
@@ -260,7 +273,7 @@ app.post('/trip/post',function(req,res){
               res.status(200).json('ok')
             }
             else{
-              res.status(400).json(err2);
+              res.status(400).json({message:err2});
 
             }
           });
@@ -286,7 +299,7 @@ app.post('/trip/post',function(req,res){
           res.status(200).json('ok')
         }
         else{
-          res.status(400).json(err2);
+          res.status(400).json({message:err2});
 
         }
       });
@@ -328,8 +341,8 @@ app.put('/trip',function(req,res){
     res.status(200).json('okay');
     }
     else{
-      res.status(400);
-    }
+res.status(400).json({message:err});
+ }
   });
 });
   }

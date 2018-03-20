@@ -13,7 +13,7 @@
   <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- custom styles -->
-  <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+  <link rel="stylesheet" type="text/css" href="/styles/home.css">
   <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDAfwCoggPDi6ucFfluBOo9kpJHoFbaVtM
   &ibraries=geometry,places'> </script>
   <!-- jquery -->
@@ -30,8 +30,8 @@
   <% if(!ssn.trip){ %>
     <div class='container'>
       <div class='row'>
-        <h1>You have not started any trips. Click the "Start Trip" button below.</h1>
-        <button>
+        <h3>You have not started any trips. Click the button below to start a trip.</h3>
+      <a class='btn btn-info btn-sm col-5 startTripBtn'href="/trip"><h5>Start Trip</h5></a>
       </div>
     </div>
     <% } else{ %>

@@ -10,7 +10,7 @@ h1{
 }
 
 #map{
-  height:84%;
+  height:60%;
 }
 
 footer{
@@ -116,6 +116,6 @@ footer .row{
 }
 @media only screen and (max-height: 740px) {
   #map{
-    height:78%;
+    height:55%;
   }
 }

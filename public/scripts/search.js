@@ -1,10 +1,23 @@
 var map;
 var map_id;
-function initAutocomplete() {
 
+function initAutocomplete() {
+  var x = document.cookie.split(';');
+  console.log(x);
+    var lat = x[0].split('=');
+    var lng = x[1].split('=');
+
+    map = new google.maps.Map(map_id, {
+        center: { lat: parseFloat(lat[1]), lng: parseFloat(lng[1]) },
+        zoom: 15
+      });
+      var center = new google.maps.Marker({
+        position: { lat: parseFloat(lat[1]), lng: parseFloat(lng[1]) },
+        map: map,
+        title: 'Your actual position'
+      });
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
@@ -59,35 +72,17 @@ function initAutocomplete() {
     });
     map.fitBounds(bounds);
   });
-  new google.maps.places.initAutocomplete(document.getElementById('initAutocomplete'));
+
 
 
 
 }
 
-function map(){
-  // get cookies for lat and lng
-  //document.cookie is an array of strings
-  var x = document.cookie.split(';');
-  console.log(x);
-    var lat = x[0].split('=');
-    var lng = x[1].split('=');
 
-    map = new google.maps.Map(map_id, {
-        center: { lat: parseFloat(lat[1]), lng: parseFloat(lng[1]) },
-        zoom: 15
-      });
-      var center = new google.maps.Marker({
-        position: { lat: parseFloat(lat[1]), lng: parseFloat(lng[1]) },
-        map: map,
-        title: 'Your actual position'
-      });
-      initAutocomplete();
-}
         // Create the search box and link it to the UI element.
 
 
         $(document).ready(function(){
         map_id = document.getElementById('map');
-        map();
+        initAutocomplete();
         });

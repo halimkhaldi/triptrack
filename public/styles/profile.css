@@ -2,7 +2,7 @@ body{
   padding: 0em 0em;
   background-color: #fff;
   height:100%;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 h1{

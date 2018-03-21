@@ -1,25 +1,68 @@
 
 var map;
 var map_id;
-function map(){
-  // get cookies for lat and lng
-  //document.cookie is an array of strings
-  var x = document.cookie.split(';');
-  console.log(x);
-    var lat = x[0].split('=');
-    var lng = x[1].split('=');
+function trips(){
+$.ajax({
+  url:'/trips/null',
+  method:'get',
+  success:function(ok){
+    var trip=ok.trip;
+  var content=$('#content');
+  content.append(`
+    <div class="card">
 
-    map = new google.maps.Map(map_id, {
-        center: { lat: parseFloat(lat[1]), lng: parseFloat(lng[1]) },
-        zoom: 15
-      });
-      var center = new google.maps.Marker({
-        position: { lat: parseFloat(lat[1]), lng: parseFloat(lng[1]) },
-        map: map,
-        title: 'Your actual position'
-      });
+
+        <div class="view overlay">
+            <img src= ' ${trip.image_start[0]} ' class="img-fluid" alt="">
+            <a href="#">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+
+        <div class="card-body">
+
+            <h4 class="card-title"> ${trip.name}</h4>
+
+            <p class="card-text"> ${trip.description}</p>
+
+        </div>
+
+
+    </div>
+    `);
+    ok.posts.forEach(function(post){
+      content.append(`
+        <div class="card">
+
+
+            <div class="view overlay">
+                <img src= ' ${post.images[0]} ' class="img-fluid" alt="">
+                <a href="#">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+
+            <div class="card-body">
+
+                <h4 class="card-title"> ${post.title}</h4>
+
+                <p class="card-text"> ${post.description}</p>
+              
+            </div>
+
+
+        </div>
+        `);
+    });
+
+  },
+  error:function(err){
+    console.log(err)
+  }
+});
 }
 $(document).ready(function(){
-map_id = document.getElementById('map');
-map();
+trips();
 });

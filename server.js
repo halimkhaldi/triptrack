@@ -364,6 +364,25 @@ app.post('/search',function(req,res){
   console.log('here');
   console.log(req);
 });
+app.get('/trips/:id',function(req,res){
+var id = req.params.id
+if(id == 'null')
+id=ssn.trip
+console.log(ssn);
+console.log(id);
+Trip.findOne({_id:id},function(err,found){
+  if(found){
+Post.find({trip_id:id,user_id:req.user._id},function(err,posts){
+  if(posts){
+    res.status(200).json({trip:found,posts:posts});
+  }
+});
+  }
+
+})
+
+
+});
 app.get('/logout', function (req, res) {
   console.log("BEFORE logout", JSON.stringify(req.user));
   req.logout();

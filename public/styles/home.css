@@ -11,9 +11,7 @@ h3{
   text-align: center;
   color:black;
 }
-#map{
-  height:100%;
-}
+
 .btn{
   margin-top: 0.4em ;
   background-color: #4ce39c;
@@ -58,4 +56,7 @@ footer .row{
   margin: 0 auto;
   padding: 0.5em;
 
+}
+#content{
+  margin: 2em 0em 6.5em 0em;
 }

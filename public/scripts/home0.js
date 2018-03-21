@@ -1,13 +1,14 @@
 
-function trips(id){
-  console.log(id);
+var map;
+var map_id;
+function trips(){
 $.ajax({
-  url:`/trips/${id}`,
+  url:'/trips/null',
   method:'get',
   success:function(ok){
     var trip=ok.trip;
-  var content=$('#content .modal-body');
-  content.empty()
+    console.log(ok);
+  var content=$('#content');
   content.append(`
     <div class="card">
 
@@ -56,7 +57,7 @@ $.ajax({
         </div>
         `);
     });
-  $('#content').modal('show');
+
   },
   error:function(err){
     console.log(err)
@@ -64,12 +65,5 @@ $.ajax({
 });
 }
 $(document).ready(function(){
-$('.content').on('click','.more',function(e){
-  e.preventDefault();
-var id=$(this).attr('data-id');
-console.log(id);
-trips(id);
-})
-
-
+trips();
 });

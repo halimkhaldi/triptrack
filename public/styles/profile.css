@@ -75,3 +75,10 @@ img {
 .settingsButton {
   margin-right: 2em;
 }
+
+.showing{
+  top:0;
+  z-index:20;
+  height:80%;
+  display:block;
+}

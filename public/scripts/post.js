@@ -1,8 +1,8 @@
 var map;
 var service;
 var infowindow;
-var markers=[];
-var open=false;
+var markers = [];
+var open = false;
 function get_current_location() {
 
   if (navigator.geolocation) {
@@ -61,7 +61,7 @@ function map(center){
         icon: image,
         title: place.name,
         id: place.id,
-        content: `<div>${place.name} <br> ${place.photos[0].html_attributions[0]}</div>`
+        content: `<div>${place.name} <br> ${place.photos[0].html_attributions[0]}</div>` // for InfoWindow
 
 
 
@@ -147,7 +147,7 @@ alert(err.responseJSON.message);      }
       },
       error:function(err){
         console.log(err);
-        alert(err.responseJSON.message);
+          alert(err.responseJSON.message);
       }
     });
 
@@ -167,7 +167,7 @@ $('#end_trip').on('submit',function(e){
       window.location.href='/home'
     },
     error:function(err){
-      console.log(err)
+
       alert(err.responseJSON.message.message);
     }
   });

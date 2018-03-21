@@ -7,25 +7,29 @@ var bodyParser = require('body-parser'),
     LocalStrategy = require('passport-local').Strategy,
     cookieParser = require('cookie-parser'),
     path = require('path'),//to extract extension
-    multer = require('multer'),
+    multer = require('multer'), // for multi data form parsing
     GoogleCloudStorage = require('@google-cloud/storage') //multi-datatype parser
 
-
+//google storage configuration
     var storage = GoogleCloudStorage({
       projectId: 'apt-decorator-92202',
       keyFilename: 'aaaaaaaa-ff02e62467bd.json'
     });
+    // bucket name
     var BUCKET_NAME = 'trip_track';
+    // using the bucker
 var myBucket = storage.bucket(BUCKET_NAME);
+
+// session variable
 var ssn,
-    cookies;
+    cookies; // cookies
 var User = db.User;
 var Trip = db.Trip;
 var Activity=db.Activity;
 var Post=db.Post
 // session
 app.use(session({
-  secret: 'wdi_trip_log',
+  secret: 'wdi_trip_log', // secret password
   resave: false,
   saveUninitialized: false
 }));
@@ -63,8 +67,8 @@ app.use(function(req, res, next) {
   });
   const upload = multer({
     storage: local,
-    limits:{fileSize: 15*1024*1024},
-    fileFilter: function(req, file, cb){
+    limits:{fileSize: 15*1024*1024}, // 15mb file limite
+    fileFilter: function(req, file, cb){ // only images
       const filetypes = /jpeg|jpg|png|gif/;
         const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
         const mimetype = filetypes.test(file.mimetype);
@@ -73,14 +77,15 @@ app.use(function(req, res, next) {
         } else {
           cb('Nope we only accept images ');
         }
-  }
-});//limits file size to uploads
+    }
+});
 
 
 
-  var uploads=upload.array('myImage',5);//this allows only one file 'myImage'
+  var uploads=upload.array('myImage',5);//this allows only 5 files
 //basic root route
 app.get('/',function(req,res){
+  // if conencted
   if(req.user){
     res.redirect('/home')
   }else{
@@ -88,8 +93,11 @@ app.get('/',function(req,res){
 res.render('login.ejs');
 }
 });
+
 app.post('/signup',function(req,res){
+  // ragex for email verification
   var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  // email verified
   if( !emailRegex.test(req.body.username)){;
     res.status(400).json({message:'email adresse is not valide'});
 }
@@ -99,9 +107,8 @@ app.post('/signup',function(req,res){
       res.status(400).json({'message':err});
       throw err;
     }else{
-
     passport.authenticate('local')(req, res, function(err1,ok) {
-  if(err1){
+    if(err1){
   res.status(400).json({'message':err1.message});
 }
   else{
@@ -150,7 +157,7 @@ if(!req.user){
   res.status(200).json('ok');
 }
 });
-
+// profile page
 app.get('/user', function(req, res) {
   var trips=[];
   if(!req.user) {
@@ -181,7 +188,9 @@ app.get('/trip', function (req, res) {
   }
 });
 app.post('/trip',function(req,res){
+  // connected and didnt start a trip yet
   if(req.user && !ssn.trip ){
+  // check for files legibility
   uploads(req,res,function(err){
 if (err) {
     console.log('this is an error'+ err);
@@ -191,10 +200,12 @@ if (err) {
   var images=[];
   let files = req.files;
   files.forEach(function(val){
+
 myBucket.upload(val.path, { public: true });
+// get the uploads
 images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
 });
-
+// create the trip
   Trip.create({
     user_id:req.user,
     date_start:Date(),
@@ -217,21 +228,21 @@ images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
       console.log(created);
 
     }
+
   });
 
 }
 
-
-
-
-
 });
 
-}else{
+}
+else{
   res.redirect('/');
 }
+
 });
 app.post('/trip/post',function(req,res){
+  // connected and has a trip
   if(req.user && ssn.trip ){
 
   uploads(req,res,function(err){
@@ -241,36 +252,36 @@ app.post('/trip/post',function(req,res){
     res.status(400).json({message:err});
 
   }else {
-
+    // check if the activity is already registred
     Activity.findOne({place_id:req.body.place_id},function(err,found){
 
       if(!found){
 
         Activity.create({
-          place_id:req.body.place_id,
-          lat:req.body.lat,
-          lng:req.body.lng,
-          street:req.body.street,
-          city:req.body.city,
-          state:req.body.state,
-          zip_code:req.body.zip_code,
-          name:req.body.place_name
+          place_id : req.body.place_id,
+          lat : req.body.lat,
+          lng : req.body.lng,
+          street : req.body.street,
+          city : req.body.city,
+          state : req.body.state,
+          zip_code : req.body.zip_code,
+          name : req.body.place_name
 
         },function(err1,created){
           if(created){
-            var images=[];
+            var images = [];
             let files = req.files;
             files.forEach(function(val){
           myBucket.upload(val.path, { public: true });
           images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
           });
           Post.create({
-            user_id:req.user,
-            location_id:created,
-            title:req.body.name,
-            description:req.body.description,
-            images:images,
-            trip_id:ssn.trip
+            user_id : req.user,
+            location_id : created,
+            title : req.body.name,
+            description : req.body.description,
+            images : images,
+            trip_id : ssn.trip
           },function(err2,posted){
             if(posted){
               res.status(200).json('ok')
@@ -284,19 +295,19 @@ app.post('/trip/post',function(req,res){
           }
         });
       }else{
-        var images=[];
+        var images = [];
         let files = req.files;
         files.forEach(function(val){
       myBucket.upload(val.path, { public: true });
       images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
       });
       Post.create({
-        user_id:req.user,
-        location_id:found,
-        title:req.body.name,
-        description:req.body.description,
-        images:images,
-        trip_id:ssn.trip
+        user_id : req.user,
+        location_id : found,
+        title : req.body.name,
+        description : req.body.description,
+        images : images,
+        trip_id : ssn.trip
       },function(err2,posted){
         if(posted){
           res.status(200).json('ok')
@@ -306,9 +317,6 @@ app.post('/trip/post',function(req,res){
 
         }
       });
-
-
-
       }
     });
 
@@ -316,7 +324,7 @@ app.post('/trip/post',function(req,res){
 });
 }
 });
-
+// end the trip
 app.put('/trip',function(req,res){
   if(req.user && ssn.trip ){
   uploads(req,res,function(err){
@@ -326,18 +334,18 @@ app.put('/trip',function(req,res){
     res.status(400).json({message:err});
 
   }else {
-    var images=[];
+    var images = [];
     let files = req.files;
     files.forEach(function(val){
   myBucket.upload(val.path, { public: true });
   images.push(`https://storage.googleapis.com/${BUCKET_NAME}/${val.filename}`);
   });
   Trip.findOne({_id:ssn.trip},function(err,trip){
-  trip.description_end=req.body.description;
-  trip.lat_end=req.body.lat;
-  trip.lng_end=req.body.lng;
-  trip.image_end=images;
-  trip.date_end=Date();
+  trip.description_end = req.body.description;
+  trip.lat_end = req.body.lat;
+  trip.lng_end = req.body.lng;
+  trip.image_end = images;
+  trip.date_end = Date();
   trip.save(function(err,saved){
     if(saved){
       ssn.trip=null;
@@ -364,10 +372,12 @@ app.post('/search',function(req,res){
   console.log('here');
   console.log(req);
 });
+
 app.get('/trips/:id',function(req,res){
 var id = req.params.id
+// if no id given
 if(id == 'null')
-id=ssn.trip
+id = ssn.trip
 console.log(ssn);
 console.log(id);
 Trip.findOne({_id:id},function(err,found){

@@ -81,15 +81,15 @@
 <div class='container'>
 <div class='row'>
   <div class='col-10 offset-1'>
-<button class='btn btn-success col-12' data-target='#add_trip' data-toggle="modal">add Posts</button>
-<button class='btn btn-danger col-12' data-target='#end_Trip' data-toggle="modal">End your Trip</button>
+<button class='btn btn-success col-12' data-target='#add_trip' data-toggle="modal">Add Posts</button>
+<button class='btn btn-danger col-12' data-target='#end_Trip' data-toggle="modal">End Your Trip</button>
 </div>
 </div>
 <div class="modal fade" id="add_trip" tabindex="-1" role="dialog" aria-labelledby="add_post" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Start Trip</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add to Trip</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -138,7 +138,7 @@
       <div class="modal-body">
         <form method='post' action='/post' enctype="multipart/form-data" id='end_trip'>  <!-- allow multipart data -->
 
-      
+
           <div class="form-group">
             <label for="description_end" class="col-form-label">Description</label>
             <input type="text" class="form-control" id="description_end" name='description' placeholder="Description">

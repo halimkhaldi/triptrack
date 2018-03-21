@@ -156,7 +156,7 @@ app.get('/user', function(req, res) {
   if(!req.user) {
     res.redirect('/');
   } else {
-    Trip.find({user_id:req.user._id},function(err,all){
+    Trip.find({user_id:req.user._id,date_end:{ $ne: null }},function(err,all){
     res.render('profile',{user:req.user,trips:all});
     });
 
